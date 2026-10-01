@@ -1,0 +1,185 @@
+// Game Definitions, Metadata & Neuroscience Insights
+
+export const GAMES = [
+  {
+    id: 'speed-match',
+    title: 'Hız Eşleştirme',
+    englishTitle: 'Speed Match',
+    domain: 'speed',
+    domainLabel: 'Hız',
+    color: '#FF9A00',
+    gradient: 'linear-gradient(135deg, #FF9A00 0%, #FA6432 100%)',
+    iconName: 'Zap',
+    summary: 'Mevcut sembolün bir önceki sembolle aynı olup olmadığını en yüksek hızla belirleyin.',
+    neuroscience: 'Görsel işleme hızını (Visual Processing Speed) ve kısa süreli çalışma belleğini aktive eder. Bilgi akışını anlık filtreleme refleksini geliştirir.',
+    brainRegion: 'Oksipital & Parietal Korteks',
+    controls: 'Sol Ok / [← Farklı] | Sağ Ok / [Aynı →]',
+    targetDuration: 45,
+    difficulty: 'Orta',
+    playCount: 1420,
+    tips: 'Sembollerin şekline ve rengine odaklanın; ritmi yakaladığınızda çarpanınız 5x seviyesine ulaşır.'
+  },
+  {
+    id: 'memory-matrix',
+    title: 'Hafıza Matrisi',
+    englishTitle: 'Memory Matrix',
+    domain: 'memory',
+    domainLabel: 'Hafıza',
+    color: '#7B4CE6',
+    gradient: 'linear-gradient(135deg, #7B4CE6 0%, #A29BFE 100%)',
+    iconName: 'Grid',
+    summary: 'Ekranda birkaç saniyeliğine yanan desen karelerini aklınızda tutun ve eksiksiz tıklayın.',
+    neuroscience: 'Uzamsal çalışma belleğini (Visuospatial Working Memory) eğitir. Günlük yaşamda nesnelerin yerlerini ve karmaşık düzenleri akılda tutmayı kolaylaştırır.',
+    brainRegion: 'Dorsolateral Prefrontal Korteks & Hipokampus',
+    controls: 'Farenizle veya dokunarak kareleri seçin.',
+    targetDuration: 60,
+    difficulty: 'Dinamik Uyarlamalı',
+    playCount: 1890,
+    tips: 'Kareleri tek tek saymak yerine bir bütün geometrik şekil (örneğin üçgen veya çizgi) olarak zihninizde gruplayın (chunking tekniği).'
+  },
+  {
+    id: 'lost-in-migration',
+    title: 'Göç Yolu (Kuş Sürüsü)',
+    englishTitle: 'Lost in Migration',
+    domain: 'attention',
+    domainLabel: 'Dikkat',
+    color: '#0091FF',
+    gradient: 'linear-gradient(135deg, #0091FF 0%, #00C6FF 100%)',
+    iconName: 'Compass',
+    summary: 'Çevredeki çeldirici kuşları görmezden gelin; sadece ortadaki ana mavi kuşun baktığı yönü tuşlayın!',
+    neuroscience: 'Eriksen Flanker görevi temel alınmıştır. Seçici dikkat (Selective Attention) ve bilişsel ketleme (Inhibitory Control) becerilerini test eder.',
+    brainRegion: 'Anterior Singulat Korteks (ACC)',
+    controls: 'Yön Tuşları (↑, ↓, ←, →) veya Ekran Butonları.',
+    targetDuration: 45,
+    difficulty: 'Yüksek Hız',
+    playCount: 2310,
+    tips: 'Gözlerinizi sadece merkezdeki kuşa sabitleyin, çevredeki kanat hareketlerinin periferik vizyonda kaybolmasına izin verin.'
+  },
+  {
+    id: 'chalkboard-challenge',
+    title: 'Kara Tahta Meydan Okuması',
+    englishTitle: 'Chalkboard Challenge',
+    domain: 'problemSolving',
+    domainLabel: 'Problem Çözme',
+    color: '#00B894',
+    gradient: 'linear-gradient(135deg, #00B894 0%, #55EFC4 100%)',
+    iconName: 'Calculator',
+    summary: 'İki matematiksel ifadeyi saniyeler içinde zihninizde çözüp hangisinin daha büyük olduğunu seçin.',
+    neuroscience: 'Zihinsel aritmetik, nicel akıl yürütme ve anlık büyüklük kestirimi (Numerical Cognition) kapasitesini geliştirir.',
+    brainRegion: 'İntraparietal Sulkus (IPS)',
+    controls: '[ < Sol Küçük ] | [ = Eşit ] | [ > Sol Büyük ] (Klavyede: ← / ↓ / →)',
+    targetDuration: 45,
+    difficulty: 'Zaman Baskılı',
+    playCount: 1150,
+    tips: 'Tam sonucu hesaplamak zorunda kalmadığınız durumlarda yaklaşık yuvarlama yöntemiyle zaman kazanın.'
+  },
+  {
+    id: 'color-match',
+    title: 'Renk Eşleştirme (Stroop)',
+    englishTitle: 'Color Match',
+    domain: 'flexibility',
+    domainLabel: 'Esneklik',
+    color: '#E83D84',
+    gradient: 'linear-gradient(135deg, #E83D84 0%, #FF7597 100%)',
+    iconName: 'Palette',
+    summary: 'Üstteki kelimenin anlamı ile alttaki kelimenin rengi eşleşiyor mu? Zihinsel çelişkiyi aşın.',
+    neuroscience: 'Ünlü Stroop Etkisi testi! Otomatik okuma refleksi ile görsel renk algısı arasındaki çelişkiyi çözerek Bilişsel Esnekliği (Cognitive Flexibility) artırır.',
+    brainRegion: 'Ventrolateral Prefrontal Korteks',
+    controls: '[Sol Ok: HAYIR (Farklı)] | [Sağ Ok: EVET (Aynı)]',
+    targetDuration: 45,
+    difficulty: 'Kritik Dikkat',
+    playCount: 1670,
+    tips: 'Alttaki kelimenin ne yazdığını okumayın; sadece renginin üstteki kelimeyle uyuşup uyuşmadığına bakın.'
+  },
+  {
+    id: 'target-tracker',
+    title: 'Hedef Takibi',
+    englishTitle: 'Target Tracker',
+    domain: 'attention',
+    domainLabel: 'Dikkat',
+    color: '#00C2A8',
+    gradient: 'linear-gradient(135deg, #00C2A8 0%, #008477 100%)',
+    iconName: 'Target',
+    summary: 'Hızla hareket eden ve seken küreler arasından başlangıçta işaretlenen hedefleri gözünüzle takip edin.',
+    neuroscience: 'Görsel Çoklu Nesne Takibi (Multiple Object Tracking - MOT). Dinamik uzamsal dikkat, parietal korteks ve görsel odak kapasitesini geliştirir.',
+    brainRegion: 'Parietal Korteks & Üst Kolikulus',
+    controls: 'Fare / Dokunmatik (Hedef kürelere tıklayın)',
+    targetDuration: 50,
+    difficulty: 'Giderek Hızlanan',
+    playCount: 1780,
+    tips: 'Tüm küreleri tek tek takip etmek yerine, hedeflerin oluşturduğu sanal çokgeni (poligonu) bir bütün olarak zihninizde izleyin.'
+  },
+  {
+    id: 'ebb-and-flow',
+    title: 'Gelgit Akışı',
+    englishTitle: 'Ebb and Flow',
+    domain: 'flexibility',
+    domainLabel: 'Esneklik',
+    color: '#A855F7',
+    gradient: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)',
+    iconName: 'Wind',
+    summary: 'Rüzgarda savrulan yaprağın rengine göre kural değişir: Baktığı yön mü, yoksa sürüklendiği yön mü?',
+    neuroscience: 'Görev Değiştirme (Task Switching) ve Bilişsel Esneklik testi. Prefrontal korteksin kural setleri arasında geçiş yapma ve otomatik tepkiyi ketleme yeteneğini keskinleştirir.',
+    brainRegion: 'Dorsolateral Prefrontal Korteks & Striatum',
+    controls: 'Yön Tuşları (↑, ↓, ←, →) veya D-Pad Butonları',
+    targetDuration: 45,
+    difficulty: 'Yüksek Konsantrasyon',
+    playCount: 1540,
+    tips: 'Kural değiştiğinde eski kuralı tamamen unutun; yaprağın rengi Yeşil ise Baktığı Yön, Turuncu ise Hareket Yönü ipucunu hatırlayın.'
+  },
+  {
+    id: 'raindrops',
+    title: 'Yağmur Damlaları',
+    englishTitle: 'Raindrops',
+    domain: 'problemSolving',
+    domainLabel: 'Problem Çözme',
+    color: '#3B82F6',
+    gradient: 'linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)',
+    iconName: 'CloudRain',
+    summary: 'Bulutlardan süzülen matematik damlalarını okyanus hattına düşmeden önce zihninizde hesaplayıp patlatın.',
+    neuroscience: 'Hızlı zihinsel aritmetik (Mental Arithmetic), sayısal akıl yürütme ve çalışma belleği hızını eğitir.',
+    brainRegion: 'Sol İntraparietal Sulkus & Açısal Girus',
+    controls: 'Klavyedeki Rakamlar (0-9) veya Ekran Tuş Takımı',
+    targetDuration: 50,
+    difficulty: 'Giderek Hızlanan',
+    playCount: 1920,
+    tips: 'Cevabı yazar yazmaz sistem doğru damlayı patlatır; en aşağıya yaklaşan acil damlaya öncelik verin.'
+  },
+  {
+    id: 'tidal-treasures',
+    title: 'Deniz Hazineleri',
+    englishTitle: 'Tidal Treasures',
+    domain: 'memory',
+    domainLabel: 'Hafıza',
+    color: '#10B981',
+    gradient: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+    iconName: 'Gem',
+    summary: 'Sahile vuran hazineleri aklınızda tutun; her turda daha önce hiç seçmediğiniz yeni bir nesneye tıklayın.',
+    neuroscience: 'Sürekli Olay Belleği (Continuous Episodic Memory) ve Tanıma Belleği. Hipokampusun daha önce deneyimlenen nesneleri anlık hatırlama kapasitesini geliştirir.',
+    brainRegion: 'Hipokampus & Medial Temporal Lob',
+    controls: 'Fare / Dokunmatik (Nesneye tıklayın)',
+    targetDuration: 50,
+    difficulty: 'Genişleyen Bellek',
+    playCount: 1650,
+    tips: 'Her seçtiğiniz nesneyi zihninizde kısa bir hikayeye ekleyin (örneğin: inciyi buldum, sonra kolyeye taktım).'
+  }
+];
+
+// Full classic 5-game Lumosity workout (covers all 5 cognitive domains)
+export const FULL_WORKOUT_GAMES = [
+  'speed-match',
+  'memory-matrix',
+  'lost-in-migration',
+  'chalkboard-challenge',
+  'color-match'
+];
+
+// Quick 3-game workout option
+export const QUICK_WORKOUT_GAMES = [
+  'speed-match',
+  'memory-matrix',
+  'lost-in-migration'
+];
+
+export const DAILY_WORKOUT_GAMES = FULL_WORKOUT_GAMES;
+
