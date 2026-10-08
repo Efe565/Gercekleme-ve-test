@@ -1,0 +1,20 @@
+{
+  "name": "pango-ai-ecommerce-agent",
+  "version": "1.0.0",
+  "description": "Pango AI (YC S26) - Autonomous E-Commerce Returns, Exchanges & Tracking Operations OS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "ycombinator",
+    "ecommerce",
+    "ai-agent",
+    "returns",
+    "tracking",
+    "pango"
+  ],
+  "author": "Antigravity",
+  "license": "MIT"
+}

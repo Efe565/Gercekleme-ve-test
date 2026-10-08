@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pango AI – E-Ticaret İçin Otonom İade, Değişim & Kargo Takip Ajanı (YC S26)</title>
+  <meta name="description" content="Pango AI (YC S26 Modeli): E-ticaret mağazaları için yapay zeka destekli otonom iade, anında beden değişimi ve kargo takip operasyon işletim sistemi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Glass Navigation -->
+  <header class="app-header">
+    <div class="header-inner container">
+      <div class="logo-group">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <div class="brand-title">Pango<span class="gradient-text">.ai</span></div>
+          <span class="badge-yc">YC S26 MODELİ</span>
+        </div>
+      </div>
+
+      <nav class="nav-tabs" role="tablist">
+        <button class="nav-tab active" id="tab-btn-customer" data-tab="customer-view" role="tab" aria-selected="true">
+          <span class="tab-dot"></span>
+          🛍️ Müşteri Portalı & Ajan
+        </button>
+        <button class="nav-tab" id="tab-btn-merchant" data-tab="merchant-view" role="tab" aria-selected="false">
+          📊 Mağaza Yönetim Paneli
+          <span class="badge-pill">Canlı</span>
+        </button>
+        <button class="nav-tab" id="tab-btn-developer" data-tab="developer-view" role="tab" aria-selected="false">
+          ⚡ API & Webhook Konsolu
+        </button>
+      </nav>
+
+      <div class="header-actions">
+        <div class="status-indicator">
+          <span class="pulse-dot"></span>
+          <span class="status-text">Ajan Aktif (Shopify + Yurtiçi)</span>
+        </div>
+        <button class="btn-sound-toggle" id="btn-sound-toggle" title="Ses Efektlerini Aç/Kapat">
+          🔊
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Multi-View Content -->
+  <main class="main-content container">
+
+    <!-- VIEW 1: CUSTOMER SELF-SERVICE & AI AGENT -->
+    <section id="customer-view" class="view-panel active">
+      <div class="hero-customer">
+        <div class="hero-badge">⚡ 12 Saniyede Otonom Çözüm</div>
+        <h1 class="hero-title">Sipariş, İade ve Değişim <span class="gradient-text">Akıllı Asistanı</span></h1>
+        <p class="hero-desc">
+          Kargonuzun anlık nerede olduğunu öğrenin, saniyeler içinde ücretsiz beden değişimi yapın veya kargo beklemeden %10 bonus hediye çeki alın.
+        </p>
+
+        <!-- Fast Order Search Bar -->
+        <div class="order-search-box glass-card">
+          <div class="search-input-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="order-search-input" placeholder="Sipariş No (Örn: TR-89241, TR-77402) veya E-posta..." value="TR-89241">
+          </div>
+          <button class="btn-primary" id="btn-search-order">
+            <span>Siparişi Sorgula</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <div class="quick-examples">
+          <span>Hızlı Örnekler:</span>
+          <div class="quick-chips-wrap" id="quick-examples-container">
+            <button class="pill-chip" data-search="TR-89241">🚚 TR-89241 (Dağıtımda)</button>
+            <button class="pill-chip" data-search="TR-77402">✅ TR-77402 (Teslim Edildi)</button>
+            <button class="pill-chip" data-search="TR-65120">📦 TR-65120 (Hazırlanıyor)</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Details & Real-Time Logistics Grid -->
+      <div class="customer-layout-grid" id="customer-order-container">
+        
+        <!-- Left: Order Summary & Interactive Items -->
+        <div class="order-summary-card glass-card">
+          <div class="card-header">
+            <div class="order-id-badge" id="display-order-id">Sipariş #TR-89241</div>
+            <span class="status-badge badge-transit" id="display-order-status">🚚 Kurye Dağıtımda</span>
+          </div>
+
+          <div class="order-meta-row">
+            <div>
+              <span class="meta-label">Müşteri</span>
+              <strong id="display-customer-name">Canberk Yıldız</strong>
+            </div>
+            <div>
+              <span class="meta-label">Sipariş Tarihi</span>
+              <span id="display-order-date">02 Ekim 2026</span>
+            </div>
+            <div>
+              <span class="meta-label">Toplam Tutar</span>
+              <strong class="highlight-price" id="display-order-total">1.850 TL</strong>
+            </div>
+          </div>
+
+          <!-- Product Items List -->
+          <div class="items-list" id="display-items-list">
+            <!-- Dynamically Rendered -->
+          </div>
+
+          <!-- Quick Action Buttons on Order Card -->
+          <div class="order-action-bar">
+            <button class="action-btn" id="btn-quick-exchange">
+              <span class="btn-icon">🔄</span>
+              <span>Beden Değişimi İste</span>
+            </button>
+            <button class="action-btn" id="btn-quick-return">
+              <span class="btn-icon">📦</span>
+              <span>Ürünü İade Et</span>
+            </button>
+            <button class="action-btn" id="btn-quick-damage">
+              <span class="btn-icon">📸</span>
+              <span>Hasarlı/Kusurlu Bildir</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Live Courier Timeline & Smart Actions -->
+        <div class="logistics-timeline-card glass-card">
+          <div class="card-header">
+            <h3>Canlı Kargo Takip Akışı</h3>
+            <span class="carrier-tag" id="display-carrier">Yurtiçi Kargo</span>
+          </div>
+
+          <div class="tracking-code-banner">
+            <div>
+              <span class="tracking-label">Takip Numarası:</span>
+              <code class="tracking-code" id="display-tracking-no">YK-902183749</code>
+            </div>
+            <button class="btn-copy-code" id="btn-copy-tracking" title="Kopyala">📋</button>
+          </div>
+
+          <!-- Timeline Steps -->
+          <div class="timeline-stepper" id="display-timeline">
+            <!-- Injected via JS -->
+          </div>
+
+          <div class="ai-guarantee-box">
+            <div class="ai-shield-icon">🛡️</div>
+            <div>
+              <strong>Pango Akıllı Mağaza Güvencesi</strong>
+              <p>Paketiniz bugün saat 18:00'e kadar ulaşmazsa yapay zeka ajanımız kargo firmasını otomatik uyarır ve sonraki alışverişinize 150 TL indirim tanımlar.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Integrated Floating & Embedded AI Conversation Widget -->
+      <div class="ai-chat-dock glass-card">
+        <div class="chat-header">
+          <div class="agent-avatar-wrap">
+            <div class="agent-avatar">🤖</div>
+            <span class="avatar-online-dot"></span>
+          </div>
+          <div class="agent-info">
+            <div class="agent-name">Pango AI Otonom Operatör</div>
+            <div class="agent-status">Hazır • Yanıt süresi: ~1.2 saniye</div>
+          </div>
+          <div class="chat-header-actions">
+            <button class="pill-btn-sm" id="btn-clear-chat">Temizle</button>
+          </div>
+        </div>
+
+        <!-- Chat Stream Messages -->
+        <div class="chat-messages-wrap" id="chat-messages">
+          <!-- Dynamically Added -->
+        </div>
+
+        <!-- Dynamic Quick Suggestion Chips -->
+        <div class="chat-suggestions-bar" id="chat-suggestions">
+          <!-- Suggestion Chips -->
+        </div>
+
+        <!-- Input Bar -->
+        <form class="chat-input-bar" id="chat-form">
+          <input type="text" id="chat-input" placeholder="Ajanımıza yazın (Örn: 'Kazağımı L bedenle değiştirmek istiyorum' veya 'Kargom nerede?')" autocomplete="off">
+          <button type="submit" class="btn-send-chat" id="btn-send-chat">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+      </div>
+
+    </section>
+
+    <!-- VIEW 2: MERCHANT OPERATIONS COMMAND CENTER -->
+    <section id="merchant-view" class="view-panel">
+      
+      <!-- Operations Metrics Overview -->
+      <div class="metrics-grid">
+        <div class="metric-card glass-card">
+          <div class="metric-top">
+            <span class="metric-label">Otonom Çözüm Oranı</span>
+            <span class="metric-badge green">+2.4%</span>
+          </div>
+          <div class="metric-val" id="metric-resolution-rate">%94.6</div>
+          <div class="metric-sub">İnsan müdahalesi olmadan biten talepler</div>
+        </div>
+
+        <div class="metric-card glass-card">
+          <div class="metric-top">
+            <span class="metric-label">Kurtarılan Ciro (İade ➔ Değişim)</span>
+            <span class="metric-badge green">38.5%</span>
+          </div>
+          <div class="metric-val" id="metric-retained-revenue">₺246.800</div>
+          <div class="metric-sub">Nakit çıkışı yerine hediye çeki/beden değişimi</div>
+        </div>
+
+        <div class="metric-card glass-card">
+          <div class="metric-top">
+            <span class="metric-label">Tasarruf Edilen Destek Saati</span>
+            <span class="metric-badge blue">Bu Ay</span>
+          </div>
+          <div class="metric-val" id="metric-hours-saved">184 Saat</div>
+          <div class="metric-sub">~1.2 Tam Zamanlı Müşteri Temsilcisi</div>
+        </div>
+
+        <div class="metric-card glass-card">
+          <div class="metric-top">
+            <span class="metric-label">Ortalama Çözüm Süresi</span>
+            <span class="metric-badge purple">Yıldırım Hızı</span>
+          </div>
+          <div class="metric-val" id="metric-avg-time">14.2 sn</div>
+          <div class="metric-sub">Sektör ortalaması: 4.8 saat</div>
+        </div>
+      </div>
+
+      <!-- Merchant Dashboard Columns -->
+      <div class="merchant-layout-grid">
+
+        <!-- Left: Live AI RMA & Ticket Action Feed -->
+        <div class="rma-feed-card glass-card">
+          <div class="card-header">
+            <div>
+              <h3>Canlı İade & Değişim Yönetimi (RMA)</h3>
+              <p class="card-subtitle">Pango AI tarafından otonom olarak işlenen ve onaylanan son işlemler</p>
+            </div>
+            <div class="header-action-btns">
+              <button class="btn-primary-sm" id="btn-open-new-order-modal">➕ Yeni Kargo / Sipariş Ekle</button>
+              <button class="btn-secondary-sm" id="btn-refresh-rma">Yenile</button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>RMA Kodu</th>
+                  <th>Sipariş</th>
+                  <th>Müşteri</th>
+                  <th>İşlem Türü</th>
+                  <th>Neden / Detay</th>
+                  <th>Ajan Kararı</th>
+                  <th>Güven Skoru</th>
+                </tr>
+              </thead>
+              <tbody id="merchant-rma-tbody">
+                <!-- Dynamically loaded -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right: AI Automation Policy & Rules Engine -->
+        <div class="policy-engine-card glass-card">
+          <div class="card-header">
+            <div>
+              <h3>Akıllı İade Politikası Kuralları</h3>
+              <p class="card-subtitle">Pango'nun hangi koşullarda otomatik karar vereceğini belirleyin</p>
+            </div>
+            <span class="status-badge badge-active">Oto-Pilot Açık</span>
+          </div>
+
+          <form id="policy-form" class="policy-form">
+            <div class="form-group">
+              <label for="policy-return-window">İade Kabul Penceresi (Gün)</label>
+              <input type="number" id="policy-return-window" value="14" min="1" max="60">
+              <span class="input-hint">Teslim tarihinden itibaren geçerli yasal süre.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="policy-auto-approve-limit">Koşulsuz Oto-Onay Limiti (TL)</label>
+              <input type="number" id="policy-auto-approve-limit" value="750" min="0" step="50">
+              <span class="input-hint">Bu tutarın altındaki hasarlı/kusurlu ürünlerde kargo beklemeden direkt iade veya kupon verilir.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="policy-bonus-credit">Hediye Çeki Teşvik Bonusu (%)</label>
+              <input type="number" id="policy-bonus-credit" value="10" min="0" max="30">
+              <span class="input-hint">Nakit iade yerine cüzdan bakiyesini seçen müşteriye verilen ek teşvik.</span>
+            </div>
+
+            <div class="form-switch-group">
+              <label class="switch-wrap">
+                <input type="checkbox" id="policy-instant-exchange" checked>
+                <span class="slider"></span>
+              </label>
+              <div class="switch-label">
+                <strong>Anında Beden Değişimi (Instant Exchange)</strong>
+                <p>Müşteri kargoya verdiği anda eski ürün depoya varmadan yeni sipariş otomatik oluşturulsun.</p>
+              </div>
+            </div>
+
+            <div class="form-switch-group">
+              <label class="switch-wrap">
+                <input type="checkbox" id="policy-require-photo" checked>
+                <span class="slider"></span>
+              </label>
+              <div class="switch-label">
+                <strong>Hasarlı Üründe AI Görsel Analizi Zorunlu</strong>
+                <p>Kusur iddialarında müşteriden anlık fotoğraf isteyip yapay zekayla doğrula.</p>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary" id="btn-save-policies">
+              <span>Kuralları Kaydet & Güncelle</span>
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- VIEW 3: DEVELOPER API & WEBHOOK CONSOLE -->
+    <section id="developer-view" class="view-panel">
+      <div class="dev-console-layout glass-card">
+        <div class="card-header">
+          <div>
+            <h2>Entegrasyon & Webhook Simülatörü</h2>
+            <p class="card-subtitle">Shopify, WooCommerce, ikas ve Kargo Firmaları (Yurtiçi, Aras, DHL) ile Pango AI arasındaki veri akışı</p>
+          </div>
+          <div class="api-env-badge">TEST SANDBOX</div>
+        </div>
+
+        <div class="code-panels-grid">
+          <div class="code-panel">
+            <div class="code-panel-header">
+              <span>📨 Gelen Shopify Sipariş Webhook'u (orders/create)</span>
+              <button class="pill-btn-sm" id="btn-simulate-webhook">Simüle Et</button>
+            </div>
+            <pre class="code-block"><code id="code-incoming-webhook">{
+  "topic": "orders/create",
+  "shop_domain": "modernbutik.myshopify.com",
+  "order": {
+    "id": "TR-89241",
+    "email": "canberk@example.com",
+    "total_price": "1850.00",
+    "currency": "TRY",
+    "fulfillment_status": "fulfilled",
+    "line_items": [
+      { "id": "prod-1", "title": "Oversize Yün Örme Triko Kazak", "variant": "Antrasit / M", "price": "1200.00" },
+      { "id": "prod-2", "title": "Premium Pamuklu Basic Tişört", "variant": "Ekru / M", "price": "650.00" }
+    ]
+  }
+}</code></pre>
+          </div>
+
+          <div class="code-panel">
+            <div class="code-panel-header">
+              <span>🤖 Pango AI Otonom Karar Çıktısı (Agent Execution)</span>
+              <span class="badge-pill green">Status: 200 OK</span>
+            </div>
+            <pre class="code-block"><code id="code-agent-decision">{
+  "agent": "PangoOps-v2",
+  "autonomous_resolution": true,
+  "confidence_score": 0.987,
+  "actions_taken": [
+    {
+      "type": "CARRIER_INTEGRATION_SYNC",
+      "carrier": "Yurtici_Kargo",
+      "tracking_no": "YK-902183749",
+      "status": "OUT_FOR_DELIVERY"
+    },
+    {
+      "type": "OFFER_POLICY_EVALUATION",
+      "eligible_for_instant_exchange": true,
+      "store_credit_bonus_available": "10%"
+    }
+  ]
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="api-endpoints-docs">
+          <h3>Hazır REST API Uç Noktaları</h3>
+          <div class="endpoints-list">
+            <div class="endpoint-item">
+              <span class="method-get">GET</span>
+              <code>/api/orders?q={siparis_no}</code>
+              <span>Sipariş ve kargo durumunu anlık sorgular.</span>
+            </div>
+            <div class="endpoint-item">
+              <span class="method-post">POST</span>
+              <code>/api/orders/create</code>
+              <span>Yeni kargo & müşteri siparişi oluşturur ve takibi başlatır.</span>
+            </div>
+            <div class="endpoint-item">
+              <span class="method-post">POST</span>
+              <code>/api/returns/create</code>
+              <span>Otonom iade/değişim ve kargo barkodu oluşturur.</span>
+            </div>
+            <div class="endpoint-item">
+              <span class="method-post">POST</span>
+              <code>/api/chat</code>
+              <span>Pango AI otonom müşteri ajanıyla doğal dil diyaloğu.</span>
+            </div>
+            <div class="endpoint-item">
+              <span class="method-get">GET</span>
+              <code>/api/metrics</code>
+              <span>Mağaza iade ve operasyon tasarruf metriklerini çeker.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- New Order / Shipment Creation Modal -->
+  <dialog id="new-order-modal" class="custom-modal modal-lg glass-card">
+    <div class="modal-header">
+      <div class="modal-title-group">
+        <span class="badge-pill orange">Lojistik İşlemleri</span>
+        <h3>📦 Yeni Kargo & Sipariş Oluştur</h3>
+      </div>
+      <button class="btn-close-modal" id="btn-close-new-order-modal" aria-label="Kapat">✕</button>
+    </div>
+    <form id="new-order-form">
+      <div class="modal-body modal-scrollable">
+        <p class="modal-desc">
+          Sisteme yeni bir müşteri kargosu tanımlayın. Kaydettiğiniz anda müşteri arayüzünden ve yapay zeka asistanından anında canlı sorgulanabilir.
+        </p>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="new-order-id">Sipariş No</label>
+            <div class="input-with-action">
+              <input type="text" id="new-order-id" placeholder="TR-90412" required pattern="TR-[0-9]{5}" title="TR- ve 5 rakam formatı (Örn: TR-90412)">
+              <button type="button" class="btn-input-action" id="btn-generate-order-id" title="Rastgele Numara Üret">🎲 Üret</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="new-order-status">Kargo Durumu</label>
+            <select id="new-order-status" class="custom-select" required>
+              <option value="in_transit" selected>🚚 Kurye Dağıtımda (in_transit)</option>
+              <option value="processing">📦 Depoda Hazırlanıyor (processing)</option>
+              <option value="delivered">✅ Teslim Edildi (delivered)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="new-order-carrier">Kargo Firması (Taşıyıcı)</label>
+            <select id="new-order-carrier" class="custom-select" required>
+              <option value="Yurtiçi Kargo" selected>🚚 Yurtiçi Kargo</option>
+              <option value="Aras Kargo">🚚 Aras Kargo</option>
+              <option value="MNG Kargo">🚚 MNG Kargo</option>
+              <option value="HepsiJet">⚡ HepsiJet</option>
+              <option value="Trendyol Express">🧡 Trendyol Express</option>
+              <option value="Sürat Kargo">📦 Sürat Kargo</option>
+              <option value="Kolay Gelsin">🛵 Kolay Gelsin</option>
+              <option value="DHL Express">✈️ DHL Express</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="new-order-tracking">Kargo Takip No</label>
+            <div class="input-with-action">
+              <input type="text" id="new-order-tracking" placeholder="YK-90184912" required>
+              <button type="button" class="btn-input-action" id="btn-generate-tracking" title="Kargo Kodunu Otomatik Üret">⚡ Kod Al</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label for="new-order-customer">Müşteri Adı Soyadı</label>
+            <input type="text" id="new-order-customer" placeholder="Ahmet Yılmaz" required>
+          </div>
+          <div class="form-group">
+            <label for="new-order-phone">Telefon Numarası</label>
+            <input type="tel" id="new-order-phone" placeholder="+90 532 555 1234" value="+90 532 555 8899">
+          </div>
+          <div class="form-group">
+            <label for="new-order-email">E-posta</label>
+            <input type="email" id="new-order-email" placeholder="ahmet@example.com" value="ahmet.yilmaz@example.com">
+          </div>
+        </div>
+
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label for="new-order-product-name">Ürün Adı</label>
+            <input type="text" id="new-order-product-name" placeholder="Hakiki Deri Ceket" value="Hakiki Deri Ceket" required>
+          </div>
+          <div class="form-group">
+            <label for="new-order-product-variant">Varyant / Beden</label>
+            <input type="text" id="new-order-product-variant" placeholder="Siyah - Beden: L" value="Siyah - Beden: L" required>
+          </div>
+          <div class="form-group">
+            <label for="new-order-price">Tutar (TL)</label>
+            <input type="number" id="new-order-price" placeholder="2150" value="2150" min="10" step="10" required>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="new-order-delivery-time">Tahmini Teslimat</label>
+            <input type="text" id="new-order-delivery-time" placeholder="Bugün (16:00 - 18:00)" value="Bugün (16:00 - 18:00)">
+          </div>
+          <div class="form-group">
+            <label for="new-order-address">Teslimat Adresi</label>
+            <input type="text" id="new-order-address" placeholder="Kadıköy, Moda Cad. No:12, İstanbul" value="Kadıköy, Moda Cad. No:12, İstanbul" required>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" id="btn-cancel-new-order">Vazgeç</button>
+        <button type="submit" class="btn-primary" id="btn-submit-new-order">
+          <span>🚀 Kargoyu Sisteme Kaydet & Yayınla</span>
+        </button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Damage Photo Upload Modal (Native Dialog with Light Dismiss) -->
+  <dialog id="damage-modal" class="custom-modal glass-card">
+    <div class="modal-header">
+      <h3>📸 Hasarlı / Kusurlu Ürün Görsel Analizi</h3>
+      <button class="btn-close-modal" id="btn-close-damage-modal" aria-label="Kapat">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-desc">
+        Fotoğrafı yükleyin; Pango AI görsel modelimiz kusuru 5 saniyede tespit edip iade veya yenisini gönderme kararını onaylasın.
+      </p>
+
+      <div class="upload-dropzone" id="upload-dropzone">
+        <div class="dropzone-icon">📷</div>
+        <p>Görseli sürükleyin veya <strong>bilgisayarınızdan seçin</strong></p>
+        <span class="file-hint">JPG, PNG, HEIC desteklenir</span>
+        <input type="file" id="damage-file-input" accept="image/*" class="visually-hidden">
+      </div>
+
+      <div class="preview-area hidden" id="preview-area">
+        <img id="preview-image" src="" alt="Yüklenen Görsel">
+        <div class="ai-analysis-bar" id="ai-analysis-bar">
+          <div class="scanning-spinner"></div>
+          <span id="analysis-status-text">Yapay Zeka Görseli İnceliyor...</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" id="btn-cancel-upload">İptal</button>
+      <button class="btn-primary" id="btn-confirm-damage" disabled>
+        <span>Hasar Raporunu Onayla</span>
+      </button>
+    </div>
+  </dialog>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
