@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>ToS-Agent TR - Cypress & Demo Test Laboratuvarı</title>
+  <link rel="stylesheet" href="../popup/popup.css">
+  <link rel="stylesheet" href="../content/inpage-styles.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #090d16;
+      color: #f8fafc;
+      overflow: hidden;
+    }
+
+    /* Sol Taraf: Web Sayfası Simülatörü */
+    #page-frame-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      border-right: 2px solid #334155;
+      background: #fff;
+    }
+
+    .browser-toolbar {
+      background: #1e293b;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid #334155;
+    }
+
+    .address-bar {
+      flex: 1;
+      background: #0f172a;
+      color: #38bdf8;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: monospace;
+      border: 1px solid #475569;
+    }
+
+    .nav-btn {
+      background: #334155;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .nav-btn:hover { background: #475569; }
+
+    #web-view-frame {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Sağ Taraf: Eklenti Popup Simülatörü */
+    #extension-simulator {
+      width: 450px;
+      background: var(--bg-primary);
+      display: flex;
+      flex-direction: column;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+      z-index: 100;
+    }
+
+    .sim-header {
+      background: #0284c7;
+      color: #fff;
+      padding: 8px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .sim-body {
+      flex: 1;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sol Taraf: Canlı Web Sayfası -->
+  <div id="page-frame-container">
+    <div class="browser-toolbar">
+      <span style="font-size: 14px;">🌐</span>
+      <select id="scenario-selector" class="nav-btn" style="background:#0284c7;">
+        <option value="spotify-terms.html">1. Mutlu Yol: Spotify Kullanım Koşulları</option>
+        <option value="honest-uncertainty-terms.html">2. Dürüst Belirsizlik: Bulut Hizmet Şartları</option>
+        <option value="adversarial-injection.html">3. Güvenlik: Prompt Injection Saldırısı</option>
+      </select>
+      <div id="current-url-display" class="address-bar">https://spotify.com/legal/terms</div>
+      <button id="inpage-drawer-btn" class="nav-btn">Sayfa İçi Çekmeceyi Aç</button>
+    </div>
+    <iframe id="web-view-frame" src="spotify-terms.html"></iframe>
+  </div>
+
+  <!-- Sağ Taraf: Uzantı Arayüzü -->
+  <div id="extension-simulator">
+    <div class="sim-header">
+      <span>Chrome Eklentisi (ToS-Agent TR)</span>
+      <span>v1.0.0</span>
+    </div>
+    <div class="sim-body">
+      <!-- Popup HTML içeriği -->
+      <div class="popup-container">
+        <header class="app-header">
+          <div class="brand">
+            <span class="brand-icon">🛡️</span>
+            <div>
+              <h1 class="brand-name">ToS-Agent TR</h1>
+              <p class="brand-subtitle">Alibaba Page-Agent Destekli Koşul Analizörü</p>
+            </div>
+          </div>
+          <div class="header-actions">
+            <button id="open-options-btn" class="icon-btn" title="Ayarlar">⚙️</button>
+          </div>
+        </header>
+
+        <!-- Hukuki Tavsiye Vermez Uyarısı (Zorunlu İster) -->
+        <div class="legal-disclaimer">
+          <span class="warning-icon">⚠️</span>
+          <p id="legal-disclaimer-text">
+            <strong>Yasal Uyarı:</strong> Bu uygulama hukuki tavsiye vermez. Üretilen analizler yalnızca tüketici farkındalığı ve bilgilendirme amaçlıdır; hukuki uyuşmazlıklarda uzman bir avukata danışınız.
+          </p>
+        </div>
+
+        <!-- Prompt Injection Uyarı Kutusu -->
+        <div id="injection-alert-box" class="injection-alert" style="display: none;">
+          <span class="alert-icon">🚨</span>
+          <div>
+            <strong id="injection-title">Prompt Injection Saldırısı Tespit Edildi!</strong>
+            <p id="injection-desc">Sayfadaki gizli sistem talimatları nötralize edildi ve güvenlik kaydı oluşturuldu.</p>
+          </div>
+        </div>
+
+        <!-- Kontrol Çubuğu -->
+        <div class="action-bar">
+          <button id="analyze-btn" class="primary-btn">
+            <span class="btn-icon">⚡</span>
+            <span id="analyze-btn-text">Sayfayı Analiz Et</span>
+          </button>
+          <button id="toggle-drawer-btn" class="secondary-btn">Sayfaya Sabitle ↗</button>
+        </div>
+
+        <!-- Yükleniyor Bildirimi -->
+        <div id="loading-state" class="state-box" style="display: none;">
+          <div class="spinner"></div>
+          <p id="loading-text">DOM okunuyor ve Alibaba Page-Agent ile taranıyor...</p>
+        </div>
+
+        <!-- Hata Bildirimi -->
+        <div id="error-state" class="state-box error-box" style="display: none;">
+          <span class="state-icon">❌</span>
+          <p id="error-text">Bir hata oluştu.</p>
+        </div>
+
+        <!-- Sonuç Paneli -->
+        <main id="results-container" style="display: none;">
+          <!-- Risk Skoru Kartı -->
+          <section class="score-card">
+            <div class="score-info">
+              <span class="score-label">Genel Tüketici Risk Düzeyi</span>
+              <div class="score-value-row">
+                <span id="risk-level-badge" class="level-badge">Yüksek</span>
+                <span id="risk-score-num" class="score-num">71/100</span>
+              </div>
+              <span id="doc-title-display" class="doc-title-text">spotify-terms.html</span>
+            </div>
+            <div class="score-visual">
+              <div id="score-meter-circle" class="circle-meter">
+                <span id="circle-score-val">71</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Doğrulama Özeti -->
+          <div id="verification-banner" class="verification-banner">
+            <span class="check-icon">✓</span>
+            <span id="verification-text">Tüm alıntılar orijinal metinde %100 deterministik olarak doğrulandı.</span>
+          </div>
+
+          <!-- Sade Türkçe Genel Özet -->
+          <section class="summary-section">
+            <h2 class="section-title">📋 Sade Türkçe Genel Özet</h2>
+            <div id="summary-content" class="summary-box"></div>
+          </section>
+
+          <!-- Dürüst Belirsizlik İtirafı (Honesty & Uncertainty) -->
+          <section class="uncertainty-section">
+            <h2 class="section-title">
+              <span>🔍 Sistemin Dürüst Belirsizlik Notu</span>
+              <span class="tag-uncertainty">Şeffaflık</span>
+            </h2>
+            <div id="uncertainty-content" class="uncertainty-box"></div>
+          </section>
+
+          <!-- Riskli Maddeler Listesi -->
+          <section class="clauses-section">
+            <div class="clauses-header">
+              <h2 class="section-title">Riskli Maddeler ve Kanıtlar (<span id="clauses-count">0</span>)</h2>
+              <div class="filter-controls">
+                <select id="severity-filter" class="filter-select">
+                  <option value="ALL">Tüm Seviyeler</option>
+                  <option value="Kritik">Yalnızca Kritik</option>
+                  <option value="Yüksek">Yüksek ve Kritik</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="clauses-list" class="clauses-list"></div>
+          </section>
+
+          <footer class="results-footer">
+            <button id="copy-report-btn" class="utility-btn">📋 Raporu Panoya Kopyala</button>
+            <button id="export-json-btn" class="utility-btn">💾 JSON İndir</button>
+          </footer>
+        </main>
+
+        <div id="initial-state" class="state-box initial-box">
+          <span class="big-icon">📄</span>
+          <h3>Analize Hazır</h3>
+          <p>Kullanım koşulları sayfasını taramak için <strong>"Sayfayı Analiz Et"</strong> butonuna basın.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kütüphaneler -->
+  <script src="../lib/schema.js"></script>
+  <script src="../lib/verifier.js"></script>
+  <script src="../lib/prompt-injection-guard.js"></script>
+  <script src="../lib/heuristic-analyzer.js"></script>
+  <script src="../lib/llm-client.js"></script>
+  <script src="demo-bridge.js"></script>
+</body>
+</html>

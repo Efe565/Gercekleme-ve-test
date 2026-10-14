@@ -1,0 +1,30 @@
+{
+  "name": "tos-agent-tr",
+  "version": "1.0.0",
+  "description": "Alibaba Page-Agent Tabanlı Türkçe Kullanım Koşulları ve Hüküm Risk Analizörü Chrome Eklentisi",
+  "main": "background/service-worker.js",
+  "scripts": {
+    "start": "node scripts/serve-test-pages.js",
+    "eval": "node eval/runner.js",
+    "generate-icons": "node scripts/generate-icons.js",
+    "test:cypress": "node scripts/run-cypress-with-server.js",
+    "cypress:open": "cypress open",
+    "test": "node eval/runner.js"
+  },
+  "keywords": [
+    "chrome-extension",
+    "page-agent",
+    "alibaba-page-agent",
+    "terms-of-service",
+    "tos-analyzer",
+    "risk-report",
+    "prompt-injection-defense",
+    "turkish-nlp",
+    "verbatim-grounding"
+  ],
+  "author": "Antigravity AI Agent",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^13.17.0"
+  }
+}

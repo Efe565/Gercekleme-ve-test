@@ -1,0 +1,37 @@
+{
+  "id": "eval_01_spotify",
+  "name": "Spotify Kullanım Koşulları",
+  "category": "Müzik / Dijital Medya Aboneliği",
+  "raw_text": "Spotify Kullanım Şartları ve Abonelik Sözleşmesi. Hizmetimizi kullanarak aşağıdaki şartları kabul etmiş sayılırsınız. 1. Abonelik ve Faturalandırma: Ücretli aboneliğiniz, siz mevcut abonelik döneminin sonundan önce iptal etmediğiniz sürece otomatik olarak yenilenir ve abonelik ücreti kayıtlı kartınızdan otomatik tahsil edilir. İptal edilmeyen dönemler için para iadesi yapılmaz. 2. Değişiklikler: Spotify dilediği zaman abonelik ücretlerini ve koşulları önceden bildirmeksizin değiştirme hakkını saklı tutar. 3. Uyuşmazlıkların Çözümü: Spotify ile aranızdaki her türlü uyuşmazlık bağlayıcı tahkim yoluyla çözülecektir ve mahkemede toplu dava açma hakkınızdan feragat etmektesiniz. 4. Fikri Mülkiyet: Spotify üzerindeki çalma listeleriniz ve kullanıcı içerikleriniz üzerinde Spotify'a dünya çapında, telifsiz bir lisans verirsiniz. 5. Sorumluluk Reddi: Hizmet olduğu gibi sunulmaktadır ve Spotify kesintilerden kaynaklı zararlardan sorumlu tutulamaz.",
+  "ground_truth_risks": [
+    {
+      "category": "Otomatik Yenileme ve İptal Zorluğu",
+      "severity": "Yüksek",
+      "expected_quote": "Aboneliğiniz, siz mevcut abonelik döneminin sonundan önce iptal etmediğiniz sürece otomatik olarak yenilenir ve abonelik ücreti kayıtlı kartınızdan otomatik tahsil edilir."
+    },
+    {
+      "category": "Tahkim ve Dava Hakkından Feragat",
+      "severity": "Kritik",
+      "expected_quote": "Spotify ile aranızdaki her türlü uyuşmazlık bağlayıcı tahkim yoluyla çözülecektir ve mahkemede toplu dava açma hakkınızdan feragat etmektesiniz."
+    },
+    {
+      "category": "Tek Taraflı Değişiklik Hakkı",
+      "severity": "Orta",
+      "expected_quote": "Spotify dilediği zaman abonelik ücretlerini ve koşulları önceden bildirmeksizin değiştirme hakkını saklı tutar."
+    },
+    {
+      "category": "Fikri Mülkiyet ve İçerik Hakları Devri",
+      "severity": "Yüksek",
+      "expected_quote": "Spotify üzerindeki çalma listeleriniz ve kullanıcı içerikleriniz üzerinde Spotify'a dünya çapında, telifsiz bir lisans verirsiniz."
+    },
+    {
+      "category": "Sorumsuzluk ve Tazminat Muafiyeti",
+      "severity": "Orta",
+      "expected_quote": "Hizmet olduğu gibi sunulmaktadır ve Spotify kesintilerden kaynaklı zararlardan sorumlu tutulamaz."
+    }
+  ],
+  "safe_clauses": [
+    "Spotify Kullanım Şartları ve Abonelik Sözleşmesi.",
+    "Hizmetimizi kullanarak aşağıdaki şartları kabul etmiş sayılırsınız."
+  ]
+}

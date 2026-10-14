@@ -1,0 +1,32 @@
+{
+  "id": "eval_05_twitter",
+  "name": "X (Twitter) Kullanıcı Sözleşmesi",
+  "category": "Mikroblog & Sosyal Ağ",
+  "raw_text": "X Kullanıcı Hizmet Şartları. Hizmetlerimizi kullanarak aşağıdaki kuralları kabul etmektesiniz. 1. Gönderileriniz ve Lisans: Hizmetlerimize içerik gönderdiğinizde, bize içeriklerinizi kullanma, çoğaltma, değiştirme, yayınlama hakkı ile birlikte dünya çapında, telifsiz, münhasır olmayan bir lisans vermiş olursunuz. 2. Yapay Zeka Modelleri: Bu lisans, gönderilerinizi ve paylaşımlarınızı yapay zeka modellerini eğitmek amacıyla kullanma ve makine öğrenimi sistemlerine besleme yetkisini de kapsar. 3. Hesap Kapatma: Kendi takdirimize bağlı olarak ve herhangi bir zamanda veya herhangi bir nedenle hesabınızı askıya alabilir veya sonlandırabiliriz. 4. Feragat: X arızalardan ve sistem kesintilerinden ötürü doğrudan veya dolaylı zararlardan sorumlu tutulamaz.",
+  "ground_truth_risks": [
+    {
+      "category": "Fikri Mülkiyet ve İçerik Hakları Devri",
+      "severity": "Yüksek",
+      "expected_quote": "içeriklerinizi kullanma, çoğaltma, değiştirme, yayınlama hakkı ile birlikte dünya çapında, telifsiz, münhasır olmayan bir lisans vermiş olursunuz."
+    },
+    {
+      "category": "Yapay Zeka Eğitimi İçin Veri Kullanımı",
+      "severity": "Kritik",
+      "expected_quote": "gönderilerinizi ve paylaşımlarınızı yapay zeka modellerini eğitmek amacıyla kullanma ve makine öğrenimi sistemlerine besleme yetkisini de kapsar."
+    },
+    {
+      "category": "Hesap Askıya Alma ve Fesih Yetkisi",
+      "severity": "Orta",
+      "expected_quote": "Kendi takdirimize bağlı olarak ve herhangi bir zamanda veya herhangi bir nedenle hesabınızı askıya alabilir veya sonlandırabiliriz."
+    },
+    {
+      "category": "Sorumsuzluk ve Tazminat Muafiyeti",
+      "severity": "Orta",
+      "expected_quote": "X arızalardan ve sistem kesintilerinden ötürü doğrudan veya dolaylı zararlardan sorumlu tutulamaz."
+    }
+  ],
+  "safe_clauses": [
+    "Hizmetlerimizi kullanarak aşağıdaki kuralları kabul etmektesiniz.",
+    "X Kullanıcı Hizmet Şartları."
+  ]
+}

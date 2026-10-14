@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "ToS-Agent TR - Hüküm ve Koşul Risk Analizörü",
+  "version": "1.0.0",
+  "description": "Kullanım koşulları ve gizlilik şartlarını DOM üzerinden yakalayan, sade Türkçe risk raporu ve kanıt alıntıları sunan akıllı denetçi.",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "ToS Risk Analizi Yap",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/page-agent-core.js", "content/content-script.js"],
+      "css": ["content/inpage-styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs",
+    "scripting",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ]
+}

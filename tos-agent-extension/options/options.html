@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ToS-Agent TR - Ayarlar ve API Yapılandırması</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <div class="options-container">
+    <header class="options-header">
+      <div class="header-brand">
+        <span class="icon">⚙️</span>
+        <div>
+          <h1>ToS-Agent TR Yapılandırma Paneli</h1>
+          <p>Kendi LLM API anahtarınızı (BYOK) ve analiz tercihlerinizi belirleyin.</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="alert-info">
+      💡 <strong>Not:</strong> page-agent demo LLM'i yalnızca deneme amaçlıdır. Düzenli ve güvenilir kullanım için kendi API anahtarınızı giriniz veya dahili çevrimdışı motoru seçiniz.
+    </div>
+
+    <form id="settings-form" class="settings-form">
+      <!-- LLM Sağlayıcı Seçimi -->
+      <div class="form-group">
+        <label for="provider-select">LLM Sağlayıcısı</label>
+        <select id="provider-select" class="form-control">
+          <option value="local">Dahili Deterministik / Heuristic Motor (API Anahtarı Gerekmez)</option>
+          <option value="gemini">Google Gemini API (Önerilen - Hızlı & Yapılandırılmış JSON)</option>
+          <option value="openai">OpenAI (GPT-4o, GPT-4o-mini)</option>
+          <option value="custom">Özel OpenAI Uyumlu Endpoint (Ollama, vLLM, Groq)</option>
+        </select>
+        <small class="form-help">Hangi yapay zeka modelinin sayfaları analiz edeceğini seçin.</small>
+      </div>
+
+      <!-- API Anahtarı -->
+      <div class="form-group" id="api-key-group">
+        <label for="api-key-input">API Anahtarı (API Key)</label>
+        <div class="input-with-toggle">
+          <input type="password" id="api-key-input" class="form-control" placeholder="API anahtarınızı buraya yapıştırın..." />
+          <button type="button" id="toggle-key-visibility" class="toggle-btn" title="Göster / Gizle">👁️</button>
+        </div>
+        <small class="form-help" id="api-key-help">Anahtarınız yalnızca tarayıcınızın yerel belleğinde (chrome.storage.local) güvenle saklanır, sunucuya aktarılmaz.</small>
+      </div>
+
+      <!-- Model Adı -->
+      <div class="form-group" id="model-group">
+        <label for="model-input">Model Adı (İsteğe Bağlı)</label>
+        <input type="text" id="model-input" class="form-control" placeholder="Örn: gemini-1.5-flash veya gpt-4o-mini" />
+        <small class="form-help">Boş bırakırsanız seçilen sağlayıcının en optimize varsayılan modeli kullanılır.</small>
+      </div>
+
+      <!-- Özel Endpoint URL -->
+      <div class="form-group" id="custom-url-group" style="display: none;">
+        <label for="custom-url-input">Özel API Endpoint URL</label>
+        <input type="text" id="custom-url-input" class="form-control" placeholder="http://localhost:11434/v1/chat/completions" />
+        <small class="form-help">Yerel Ollama veya OpenAI uyumlu proxy adresinizi belirtin.</small>
+      </div>
+
+      <!-- Test & Kaydet Butonları -->
+      <div class="button-row">
+        <button type="button" id="test-connection-btn" class="btn secondary-btn">Bağlantıyı Test Et</button>
+        <button type="submit" id="save-settings-btn" class="btn primary-btn">Ayarları Kaydet</button>
+      </div>
+
+      <div id="status-message" class="status-msg" style="display: none;"></div>
+    </form>
+
+    <section class="help-section">
+      <h3>🔑 API Anahtarı Nasıl Alınır?</h3>
+      <ul>
+        <li><strong>Google Gemini:</strong> <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a> üzerinden saniyeler içinde ücretsiz API anahtarı alabilirsiniz.</li>
+        <li><strong>OpenAI:</strong> <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI Platform</a> sayfasından bir API anahtarı oluşturabilirsiniz.</li>
+        <li><strong>Çevrimdışı / Dahili Motor:</strong> Herhangi bir anahtar girmeden doğrudan "Dahili Deterministik Motor" seçeneğini kullanarak testleri ve analizleri yerel olarak çalıştırabilirsiniz.</li>
+      </ul>
+    </section>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

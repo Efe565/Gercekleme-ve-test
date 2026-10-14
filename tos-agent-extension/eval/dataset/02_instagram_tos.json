@@ -1,0 +1,32 @@
+{
+  "id": "eval_02_instagram",
+  "name": "Instagram / Meta Hizmet Şartları",
+  "category": "Sosyal Medya ve İçerik Paylaşımı",
+  "raw_text": "Meta Hizmet Koşulları ve Instagram Kullanım Şartları. Bizimle bağlantı kurduğunuz için teşekkür ederiz. 1. İçerik Lisansı: Hizmette paylaştığınız veya yüklediğiniz tüm içerikler (fotoğraf, video, metin) üzerinde Meta'ya dünya çapında, telifsiz, alt lisanslanabilir ve devredilebilir münhasır olmayan bir lisans verirsiniz. Bu lisans hesabınızı silseniz dahi başkalarıyla paylaşılan içerikler için devam edebilir. 2. Yapay Zeka Eğitimi: İçeriklerinizi, fotoğraflarınızı ve etkileşim verilerinizi yapay zeka modellerimizi eğitmek, geliştirmek ve algoritmalarımızı beslemek amacıyla kullanabiliriz. 3. Veri Paylaşımı: Kişisel verileriniz ve gezinme profiliniz, hedefli reklamcılık amacıyla reklam ortakları ve üçüncü taraf iş ortaklarımızla paylaşılabilir. 4. Hesap Feshi: Şartları ihlal ettiğiniz şüphesi durumunda veya kendi takdirimize bağlı olarak hesabınızı askıya alabilir veya tamamen kapatabiliriz. 5. Standart Güvenlik: Kullanıcı güvenliğini sağlamak için makul teknik güvenlik önlemleri almaktayız.",
+  "ground_truth_risks": [
+    {
+      "category": "Fikri Mülkiyet ve İçerik Hakları Devri",
+      "severity": "Yüksek",
+      "expected_quote": "Hizmette paylaştığınız veya yüklediğiniz tüm içerikler (fotoğraf, video, metin) üzerinde Meta'ya dünya çapında, telifsiz, alt lisanslanabilir ve devredilebilir münhasır olmayan bir lisans verirsiniz."
+    },
+    {
+      "category": "Yapay Zeka Eğitimi İçin Veri Kullanımı",
+      "severity": "Kritik",
+      "expected_quote": "İçeriklerinizi, fotoğraflarınızı ve etkileşim verilerinizi yapay zeka modellerimizi eğitmek, geliştirmek ve algoritmalarımızı beslemek amacıyla kullanabiliriz."
+    },
+    {
+      "category": "Veri Paylaşımı ve Gizlilik",
+      "severity": "Yüksek",
+      "expected_quote": "Kişisel verileriniz ve gezinme profiliniz, hedefli reklamcılık amacıyla reklam ortakları ve üçüncü taraf iş ortaklarımızla paylaşılabilir."
+    },
+    {
+      "category": "Hesap Askıya Alma ve Fesih Yetkisi",
+      "severity": "Orta",
+      "expected_quote": "kendi takdirimize bağlı olarak hesabınızı askıya alabilir veya tamamen kapatabiliriz."
+    }
+  ],
+  "safe_clauses": [
+    "Kullanıcı güvenliğini sağlamak için makul teknik güvenlik önlemleri almaktayız.",
+    "Bizimle bağlantı kurduğunuz için teşekkür ederiz."
+  ]
+}

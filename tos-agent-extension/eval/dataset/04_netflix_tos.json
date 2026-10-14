@@ -1,0 +1,27 @@
+{
+  "id": "eval_04_netflix",
+  "name": "Netflix Kullanım Koşulları",
+  "category": "Video Akış ve Abonelik Platformu",
+  "raw_text": "Netflix Hizmet Şartları ve Üyelik Koşulları. Hoş geldiniz. Bölüm 1: Üyelik ve Yenileme: Netflix üyeliğiniz siz iptal edene kadar devam eder. Aboneliğiniz siz fatura dönemi bitmeden iptal etmediğiniz sürece otomatik olarak yenilenir ve abonelik ücreti kayıtlı kartınızdan tahsil edilir. Kısmi aylar için ücret iadesi veya kredi verilmez. Bölüm 2: Hanehalkı Kısıtlaması: Netflix hizmeti yalnızca tek bir hanede yaşayan kişiler içindir. Bölüm 3: Şartlarda Değişiklik: Netflix hizmet planlarımızı ve şartlarımızı dilediği zaman değiştirme hakkını saklı tutar; fiyat değişiklikleri abonelere e-posta ile önceden bildirilir. Bölüm 4: Garanti Reddi: Hizmet açık veya zımni hiçbir garanti olmaksızın olduğu gibi sunulmaktadır ve Netflix hizmet kesintisinden doğacak zararlardan sorumlu tutulamaz.",
+  "ground_truth_risks": [
+    {
+      "category": "Otomatik Yenileme ve İptal Zorluğu",
+      "severity": "Yüksek",
+      "expected_quote": "Aboneliğiniz siz fatura dönemi bitmeden iptal etmediğiniz sürece otomatik olarak yenilenir ve abonelik ücreti kayıtlı kartınızdan tahsil edilir."
+    },
+    {
+      "category": "Tek Taraflı Değişiklik Hakkı",
+      "severity": "Orta",
+      "expected_quote": "Netflix hizmet planlarımızı ve şartlarımızı dilediği zaman değiştirme hakkını saklı tutar"
+    },
+    {
+      "category": "Sorumsuzluk ve Tazminat Muafiyeti",
+      "severity": "Orta",
+      "expected_quote": "Hizmet açık veya zımni hiçbir garanti olmaksızın olduğu gibi sunulmaktadır ve Netflix hizmet kesintisinden doğacak zararlardan sorumlu tutulamaz."
+    }
+  ],
+  "safe_clauses": [
+    "Netflix hizmeti yalnızca tek bir hanede yaşayan kişiler içindir.",
+    "Hoş geldiniz."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "id": "eval_03_zoom",
+  "name": "Zoom Video Hizmet Şartları",
+  "category": "Video Konferans & Kurumsal İletişim",
+  "raw_text": "Zoom Hizmet Şartları Sözleşmesi. Zoom toplantılarına katılarak bu koşulları onaylamış olursunuz. Madde 1 - Veri Hakları: Zoom, toplantı ses ve video kayıtları haricindeki müşteri telemetri ve kullanım verilerini makine öğrenimi algoritmaları ve yapay zeka sistemlerini geliştirmek amacıyla işleme hakkını saklı tutar. Madde 2 - Uyuşmazlıklar: Bu sözleşmeden doğan tüm anlaşmazlıklar bağlayıcı tahkim heyeti nezdinde görülecektir. Tüketici mahkemelerine başvurma ve toplu dava açma hakkınızdan feragat etmektesiniz. Madde 3 - Sorumluluk Sınırlaması: Hizmet olduğu gibi esasında sunulmakta olup, bağlantı kopması veya veri kaybında açık veya zımni hiçbir garanti verilmemektedir ve dolaylı zararlardan sorumlu tutulamaz. Madde 4 - Şartların Değişimi: Zoom bu şartları dilediği zaman güncelleyebilir ve değişiklikler sitede yayınlandığı anda yürürlüğe girer.",
+  "ground_truth_risks": [
+    {
+      "category": "Yapay Zeka Eğitimi İçin Veri Kullanımı",
+      "severity": "Kritik",
+      "expected_quote": "makine öğrenimi algoritmaları ve yapay zeka sistemlerini geliştirmek amacıyla"
+    },
+    {
+      "category": "Tahkim ve Dava Hakkından Feragat",
+      "severity": "Kritik",
+      "expected_quote": "bağlayıcı tahkim heyeti nezdinde görülecektir. Tüketici mahkemelerine başvurma ve toplu dava açma hakkınızdan feragat etmektesiniz."
+    },
+    {
+      "category": "Sorumsuzluk ve Tazminat Muafiyeti",
+      "severity": "Orta",
+      "expected_quote": "Hizmet olduğu gibi esasında sunulmakta olup, bağlantı kopması veya veri kaybında açık veya zımni hiçbir garanti verilmemektedir ve dolaylı zararlardan sorumlu tutulamaz."
+    },
+    {
+      "category": "Tek Taraflı Değişiklik Hakkı",
+      "severity": "Orta",
+      "expected_quote": "Zoom bu şartları dilediği zaman güncelleyebilir ve değişiklikler sitede yayınlandığı anda yürürlüğe girer."
+    }
+  ],
+  "safe_clauses": [
+    "Zoom toplantılarına katılarak bu koşulları onaylamış olursunuz.",
+    "Zoom Hizmet Şartları Sözleşmesi."
+  ]
+}
