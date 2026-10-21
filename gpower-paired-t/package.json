@@ -1,0 +1,31 @@
+{
+  "name": "rea-gpower-paired-t",
+  "version": "1.0.0",
+  "description": "G*Power Paired t-Test (Means: Matched Pairs - Blood Pressure Pre/Post) Clean-Room Reverse Engineered Engine, CLI, MCP Server & AI Agent",
+  "type": "module",
+  "main": "src/engine.js",
+  "bin": {
+    "gpower-paired-t": "bin/gpower-paired-t.js"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "cli": "node bin/gpower-paired-t.js",
+    "mcp": "node src/mcp-server.js",
+    "agent": "node src/agent.js"
+  },
+  "keywords": [
+    "gpower",
+    "power-analysis",
+    "sample-size",
+    "paired-t-test",
+    "blood-pressure",
+    "mcp-server",
+    "ai-agent",
+    "clinical-trials"
+  ],
+  "author": "Antigravity Engineering",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1"
+  }
+}

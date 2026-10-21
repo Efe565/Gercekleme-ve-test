@@ -36,3 +36,22 @@ Alibaba `page-agent` mimarisine dayalı, kullanım koşulları ve gizlilik polit
   npm run cypress   # Cypress E2E testlerini ve videosunu koşar
   ```
 
+### 🔬 [G*Power Matched Pairs t-Test - Teardown Sprint](./gpower-paired-t)
+G*Power biyoistatistiksel güç analizi aracının (Means: Difference between two dependent means / matched pairs) REA (Reverse Engineer Anything) ile temiz oda tersine mühendisliği; klinik tansiyon modülü (önce/sonra), CLI, MCP Sunucusu ve AI Ajanı.
+
+- **Dizin:** `gpower-paired-t/`
+- **Temel Özellikler:**
+  - REA kanıt tabanlı temiz oda spesifikasyonu (`SPEC.md` — [REA-EV-001] ... [REA-EV-006])
+  - G*Power referans vektörlerinde %100 tam eşleşme (N doğruluk kapısı)
+  - Tek çekirdek matematiksel motor (`src/engine.js`)
+  - Renkli ve tablolu CLI arayüzü (`src/cli.js`)
+  - Model Context Protocol (MCP) stdio sunucusu (`src/mcp-server.js` - 5 araç)
+  - Doğal dille klinik araştırma protokolü oluşturan AI Klinik Danışman Ajanı (`src/agent.js`)
+- **Çalıştırma & Test:**
+  ```bash
+  cd gpower-paired-t
+  npm install
+  npm test          # 21/21 birim ve G*Power vektör testlerini koşar
+  npm run cli -- --effect-size 0.5 --power 0.80
+  npm run agent -- "Tansiyon ilacı için öncesi 155, sonrası 142, r=0.6, %85 güçle kaç hasta gerekir?"
+  ```
